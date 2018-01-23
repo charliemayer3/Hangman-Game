@@ -30,6 +30,12 @@
     var randomShow = answers[Math.floor(Math.random() * answers.length)];
 
     var wordArray = [];
+    console.log(randomShow)
+    for (var i = 0; i < randomShow.length; i++) {
+      wordArray.push("_");
+    }
+
+    $("#wordInProgress").html(wordArray);
 
     document.onkeyup = function(event) {
 
@@ -38,25 +44,38 @@
       console.log(letterGuessed);
 
         for(var i = 0; i < randomShow.length; i++) {
-          wordArray[i] = "_";
+          if (letterGuessed == randomShow[i]) {
+            wordArray[i] = letterGuessed;
+          }
+          
           $("#wordInProgress").html(wordArray);
+
+          // if(wordArray[i].charAt() === letterGuessed) {
+          //   wordArray[i].push(letterGuessed);
+          // }
+
+          // if(wordArray.indexOf(letterGuessed) > -1) {
+          //   wordArray[i] = letterGuessed;
+          //   console.log(letterGuessed);
+          // };
+
+          // if(wordArray.indexOf(letterGuessed) > -1) {
+          //   $(wordArray).html(letterGuessed);
+          // };
+
+
+
+          // if(wordArray[i] === letterGuessed) {
+          //   wordArray[i].push(letterGuessed);
+          // }
+
+          if(alphabet.indexOf(letterGuessed) >= 0 && guessesSoFar.indexOf(letterGuessed) === -1) {
+            guessesSoFar.push(letterGuessed);
+          };
+
+          if
+
         };
-
-        if(wordArray.indexOf(letterGuessed) > -1) {
-          wordArray = letterGuessed;
-          console.log(letterGuessed);
-        // document.getElementById("wordInProgree").text = wordArray.join(" ");
-        };
-
-        if(wordArray.indexOf(letterGuessed) > -1) {
-          $(wordArray).html(letterGuessed);
-        };
-
-        if(alphabet.indexOf(letterGuessed) >= 0 && guessesSoFar.indexOf(letterGuessed) === -1) {
-          guessesSoFar.push(letterGuessed);
-        };
-
-
 
       // document.getElementById("wins").innerHTML = wins;
       // document.getElementById("losses").innerHTML = losses;
