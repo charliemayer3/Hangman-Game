@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Hangman</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  
+  <h1>Hangman</h1>
+  <p><div>Pick a Letter!</div></p>
+  <p><div>Wins: <span id="wins"></span></div></p>
+  <p><div>Losses: <span id="losses"></span></div></p>
+  <p><div>Current Word:</div></p>
+  <p><div><span id="wordInProgress"></span></div></p>
+  <p><div>Letters Already Guessed:</div></p>
+  <p><div><span id="lettersAlreadyGuessed"></span></div></p>
+
+  <script>
+    
+    var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var answers = ["SEINFELD", "GAME OF THRONES", "FAMILY GUY"]
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 10;
+    var guessesSoFar = [];
+    var randomShow = answers[Math.floor(Math.random() * answers.length)];
+
+    var wordArray = [];
+
+    document.onkeyup = function(event) {
+
+      var letterGuessed = event.key.toUpperCase();
+      var stringLetter = randomShow.includes(letterGuessed);
+      console.log(letterGuessed);
+
+        for(var i = 0; i < randomShow.length; i++) {
+          wordArray[i] = "_";
+          $("#wordInProgress").html(wordArray);
+        };
+
+        if(wordArray.indexOf(letterGuessed) > -1) {
+          wordArray = letterGuessed;
+          console.log(letterGuessed);
+        // document.getElementById("wordInProgree").text = wordArray.join(" ");
+        };
+
+        if(wordArray.indexOf(letterGuessed) > -1) {
+          $(wordArray).html(letterGuessed);
+        };
+
+        if(alphabet.indexOf(letterGuessed) >= 0 && guessesSoFar.indexOf(letterGuessed) === -1) {
+          guessesSoFar.push(letterGuessed);
+        };
+
+
+
+      // document.getElementById("wins").innerHTML = wins;
+      // document.getElementById("losses").innerHTML = losses;
+      // document.getElementById("guessesLeft").innerHTML = guessesLeft;
+      // document.getElementById("guessesSoFar").innerHTML = guessesSoFar;
+      document.getElementById("lettersAlreadyGuessed").innerHTML = guessesSoFar;
+      document.getElementById("wordInProgress").innerHTML = wordArray.join(" ");
+
+    };
+  </script>
+
+</body>
+</html>
